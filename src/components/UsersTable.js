@@ -1,18 +1,35 @@
-import users from "../tmp/users";
+import { users } from "../tmp/users";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsis, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookF, faGithub, faTwitter, faGoogle, faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 
 function UserRows() {
     const usersIterator = users.map((user) => {
+        const socialMediaList = user.social_profile.map((socialMedia) => {
+            let SMFiltered = socialMediaIcons.filter((SM) => {
+                if(SM.name === socialMedia) return true;
+                else return false;
+            });
+            
+            return(
+                <FontAwesomeIcon icon={SMFiltered[0].icon} className="mx-1" />
+            );
+        });
+
+        let ratingArrow = (user.rating < 4.5) ? <FontAwesomeIcon icon={faArrowDown} /> : <FontAwesomeIcon icon={faArrowUp} /> ;
+
         return(
-            <tr>
-                <td></td>
+            <tr className="text-xl font-medium">
+                <td><input type="checkbox" /></td>
                 <td>{user.name}</td>
                 <td>{user.user_role}</td>
                 <td>{user.status}</td>
-                <td>{user.social_profile}</td>
+                <td>{socialMediaList}</td>
                 <td>{user.promote}</td>
-                <td>{user.rating}</td>
-                <td>{user.last_login}</td>
-                <td></td>
+                <td>{ratingArrow} {user.rating}</td>
+                <td className="text-gray-500 font-normal">{user.last_login}</td>
+                <td className="text-gray-500 font-normal"><button><FontAwesomeIcon icon={faEllipsis} /></button></td>
             </tr >
         );
     });
@@ -24,7 +41,7 @@ export function UsersTable() {
     return(
     <>
         <table className="w-full">
-            <tr className="text-gray-500 text-base">
+            <tr className="text-gray-500 text-base text-left">
                 <th><input type="checkbox" /></th>
                 <th>User</th>
                 <th>User Role</th>
@@ -40,3 +57,30 @@ export function UsersTable() {
     </>
     );
 }
+
+const socialMediaIcons = [
+    {
+        name:"Facebook",
+        icon:faFacebookF
+    },
+    {
+        name:"Github",
+        icon:faGithub
+    },
+    {
+        name:"Twitter",
+        icon:faTwitter
+    },
+    {
+        name:"Google",
+        icon:faGoogle
+    },
+    {
+        name:"Instagram",
+        icon:faInstagram
+    },
+    {
+        name:"Tiktok",
+        icon:faTiktok
+    },
+];
