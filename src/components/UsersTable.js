@@ -1,11 +1,32 @@
-import { users } from "../tmp/users";
+// import { users } from "../tmp/users";
+
+import { useEffect, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faGithub, faTwitter, faGoogle, faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 
 function UserRows() {
+    const [isLoading, setIsLoading] = useState('true');
+    const [users, setUsers] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/users')
+            .then((response) => response.json())
+            .then((responseUsers) => {
+                setUsers(responseUsers);
+                setIsLoading(false);
+            });
+    }, []);
+
+    if (isLoading) {
+        return(<></>);
+    }
+
+    console.log(users);
+
     const usersIterator = users.map((user) => {
+        console.log(user);
         const socialMediaList = user.social_profile.map((socialMedia) => {
             let SMFiltered = socialMediaIcons.filter((SM) => {
                 if(SM.name === socialMedia) return true;
@@ -17,7 +38,7 @@ function UserRows() {
             );
         });
 
-        let ratingArrow = (user.rating < 4.5) ? <FontAwesomeIcon icon={faArrowDown} /> : <FontAwesomeIcon icon={faArrowUp} /> ;
+        // let ratingArrow = (user.rating.$numberDecimal < 4.5) ? <FontAwesomeIcon icon={faArrowDown} /> : <FontAwesomeIcon icon={faArrowUp} /> ; THIS IS CAUSING ERROR
 
         return(
             <tr className="text-xl font-medium">
@@ -27,13 +48,13 @@ function UserRows() {
                 <td>{user.status}</td>
                 <td>{socialMediaList}</td>
                 <td>{user.promote}</td>
-                <td>{ratingArrow} {user.rating}</td>
+                <td><FontAwesomeIcon icon={faArrowDown} /></td>
                 <td className="text-gray-500 font-normal">{user.last_login}</td>
                 <td className="text-gray-500 font-normal"><button><FontAwesomeIcon icon={faEllipsis} /></button></td>
             </tr >
         );
     });
-
+    console.log(usersIterator);
     return usersIterator;
 }
 

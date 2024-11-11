@@ -34,7 +34,7 @@ function App() {
           </div>
         </div>
         <div>
-          <UsersTable />
+        <UsersTable />
         </div>
       </main>
     </div>
