@@ -2,6 +2,7 @@ import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faCog, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { UsersTable } from './components/UsersTable';
+import { AddUserModal } from './components/AddUser';
 //require("./mongo/connection");
 
 function App() {
@@ -24,8 +25,7 @@ function App() {
         </div>
         <div className='flex justify-between w-full flex-wrap my-3 text-base'>
           <div>
-            <button className='py-1 px-2 mx-1 rounded-md bg-blue-600 text-white font-extralight'>
-              <FontAwesomeIcon icon={faPlus} className='mx-2'/>Add new user</button>
+            <AddUserModal />
           </div>
           <div>
             <button className='bg-slate-300 p-1 mx-1'>Suspend All</button>
@@ -34,7 +34,10 @@ function App() {
           </div>
         </div>
         <div>
-        <UsersTable />
+          <UsersTable />
+        </div>
+        <div>
+          
         </div>
       </main>
     </div>

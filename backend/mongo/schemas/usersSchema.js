@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         default:false
     },
     rating:{
-        type:mongoose.Types.Decimal128
+        type:String
     },
     last_login:{
         type: Date,

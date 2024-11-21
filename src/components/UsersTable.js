@@ -38,7 +38,7 @@ function UserRows() {
             );
         });
 
-        // let ratingArrow = (user.rating.$numberDecimal < 4.5) ? <FontAwesomeIcon icon={faArrowDown} /> : <FontAwesomeIcon icon={faArrowUp} /> ; THIS IS CAUSING ERROR
+        let ratingArrow = (user.rating < 4.5) ? <FontAwesomeIcon icon={faArrowDown} /> : <FontAwesomeIcon icon={faArrowUp} /> ;
 
         return(
             <tr className="text-xl font-medium">
@@ -48,7 +48,7 @@ function UserRows() {
                 <td>{user.status}</td>
                 <td>{socialMediaList}</td>
                 <td>{user.promote}</td>
-                <td><FontAwesomeIcon icon={faArrowDown} /></td>
+                <td>{ratingArrow} {user.rating}</td>
                 <td className="text-gray-500 font-normal">{user.last_login}</td>
                 <td className="text-gray-500 font-normal"><button><FontAwesomeIcon icon={faEllipsis} /></button></td>
             </tr >

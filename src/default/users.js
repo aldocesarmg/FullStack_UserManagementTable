@@ -5,7 +5,7 @@ export let users = [
     "status":"Active",
     "social_profile": [ "Facebook", "Github", "Twitter", "Google"],
     "promote": false,
-    "rating": 4.7,
+    "rating": "4.7",
     "last_login": "20 Nov 2022"
   },
   {
@@ -14,7 +14,7 @@ export let users = [
     "status":"Active",
     "social_profile": [ "Facebook", "Github", "Twitter", "Google"],
     "promote": true,
-    "rating": 3.9,
+    "rating": "3.9",
     "last_login": "23 Nov 2022"
   },
   {
@@ -23,7 +23,7 @@ export let users = [
     "status":"Inactive",
     "social_profile": [ "Facebook", "Github"],
     "promote": false,
-    "rating": 4.8,
+    "rating": "4.8",
     "last_login": "19 Nov 2022"
   },
   {
@@ -32,7 +32,7 @@ export let users = [
     "status":"Active",
     "social_profile": [ "Facebook", "Github", "Twitter", "Google", "Instagram", "Tiktok"],
     "promote": true,
-    "rating": 5.0,
+    "rating": "5.0",
     "last_login": "27 Nov 2022"
   },
   {
@@ -41,7 +41,7 @@ export let users = [
     "status":"Active",
     "social_profile": [ "Facebook", "Github", "Twitter", "Google"],
     "promote": false,
-    "rating": 4.2,
+    "rating": "4.2",
     "last_login": "20 Nov 2022"
   },
   {
@@ -50,7 +50,7 @@ export let users = [
     "status":"Inactive",
     "social_profile": [ "Facebook", "Github", "Twitter"],
     "promote": false,
-    "rating": 4.5,
+    "rating": "4.5",
     "last_login": "20 Nov 2022"
   },
   {
@@ -59,7 +59,7 @@ export let users = [
     "status":"Inactive",
     "social_profile": [ "Facebook", "Github", "Twitter", "Google", "Instagram", "Tiktok"],
     "promote": false,
-    "rating": 4.1,
+    "rating": "4.1",
     "last_login": "18 Nov 2022"
   },
   {
@@ -68,7 +68,7 @@ export let users = [
     "status":"Active",
     "social_profile": [ "Facebook", "Github", "Twitter", "Google"],
     "promote": true,
-    "rating": 3.8,
+    "rating": "3.8",
     "last_login": "27 Nov 2022"
   },
   {
@@ -77,7 +77,7 @@ export let users = [
     "status":"Active",
     "social_profile": [ "Facebook", "Github"],
     "promote": false,
-    "rating": 4.8,
+    "rating": "4.8",
     "last_login": "20 Nov 2022"
   },
   {
@@ -86,14 +86,7 @@ export let users = [
     "status":"Inactive",
     "social_profile": [ "Facebook", "Github", "Twitter", "Google"],
     "promote": false,
-    "rating": 5.0,
+    "rating": "5.0",
     "last_login": "20 Nov 2022"
   }
 ];
-
-export let socialMediaIcons = [
-  {
-    name:"Facebook",
-    icon:""
-  }
-]
