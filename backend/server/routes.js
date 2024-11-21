@@ -19,4 +19,24 @@ UMT_Router.get('/users', async (req, res) => {
     }
 });
 
+UMT_Router.post('/addUser', async (req, res) => {
+    try {
+        const newUser = new UserModel({
+            name: req.body.name,
+            user_role: req.body.user_role,
+            status: req.body.status,
+            social_profile: req.body.social_profile,
+            promote: req.body.promote,
+            rating: req.body.rating,
+            last_login: req.body.last_login
+        });
+
+        await UserModel.create(newUser);
+        res.status(201).json('User added');
+    } catch(error) {
+        console.log('Error in /addUser POST method');
+        res.status(400).json({message: 'Internal server error: ' + error.message})
+    }
+});
+
 module.exports = UMT_Router;
