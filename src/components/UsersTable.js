@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import { Button, Popover, Label, TextInput  } from "flowbite-react";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faGithub, faTwitter, faGoogle, faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
@@ -23,10 +25,24 @@ function UserRows() {
         return(<></>);
     }
 
-    console.log(users);
+    async function deleteUser(id) {
+        try {
+            const response = await fetch('http://localhost:5000/deleteUser/'+id, {
+                method: 'DELETE'
+            });
+        
+            if(!response.ok) throw new Error(`Error when trying to delete: ${response.status}`)
+            else {
+                const newUsers = users.filter((user) => user._id !== id);
+                setUsers(newUsers);
+            }
+        } catch (error) {
+            console.error(`Error when deleting! : ${error.message}`);
+        }
+    }
 
     const usersIterator = users.map((user) => {
-        console.log(user);
+        console.log(user._id);
         const socialMediaList = user.social_profile.map((socialMedia) => {
             let SMFiltered = socialMediaIcons.filter((SM) => {
                 if(SM.name === socialMedia) return true;
@@ -41,7 +57,7 @@ function UserRows() {
         let ratingArrow = (user.rating < 4.5) ? <FontAwesomeIcon icon={faArrowDown} /> : <FontAwesomeIcon icon={faArrowUp} /> ;
 
         return(
-            <tr className="text-xl font-medium">
+            <tr className="text-xl font-medium" key={user._id}>
                 <td><input type="checkbox" /></td>
                 <td>{user.name}</td>
                 <td>{user.user_role}</td>
@@ -50,11 +66,10 @@ function UserRows() {
                 <td>{user.promote}</td>
                 <td>{ratingArrow} {user.rating}</td>
                 <td className="text-gray-500 font-normal">{user.last_login}</td>
-                <td className="text-gray-500 font-normal"><button><FontAwesomeIcon icon={faEllipsis} /></button></td>
+                <td className="text-gray-500 font-normal"><button type='button' onClick={() => deleteUser(user._id)}><FontAwesomeIcon icon={faEllipsis} /></button></td>
             </tr >
         );
     });
-    console.log(usersIterator);
     return usersIterator;
 }
 

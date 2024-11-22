@@ -34,8 +34,23 @@ UMT_Router.post('/addUser', async (req, res) => {
         await UserModel.create(newUser);
         res.status(201).json('User added');
     } catch(error) {
-        console.log('Error in /addUser POST method');
+        console.error('Error in /addUser POST method');
         res.status(400).json({message: 'Internal server error: ' + error.message})
+    }
+});
+
+UMT_Router.delete('/deleteUser/:id', async (req, res) => {
+    try {
+        let found = await UserModel.find({ _id: req.params.id });
+        if (found.length > 0) {
+            await UserModel.deleteOne({ _id: req.params.id });
+            res.status(201).json('Deleted');
+        } else {
+            res.status(400).json('User not found');
+        }
+    } catch (error) {
+        console.error('Error in /deleteUser DELETE method');
+        res.status(400).json({message: 'Internal server error: ' + error.message});
     }
 });
 
